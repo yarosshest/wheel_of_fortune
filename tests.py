@@ -1,8 +1,9 @@
 import unittest
 from game import Game
 import io
-import sys
 from contextlib import redirect_stdout
+from unittest.mock import patch
+from game import random
 
 
 class MainTest(unittest.TestCase):
@@ -20,6 +21,7 @@ class MainTest(unittest.TestCase):
             game.greetings()
             output = buf.getvalue()
             self.assertEqual('Вопрос: test\n* * * *\n', output)
+
 
 
 if __name__ == '__main__':
