@@ -19,5 +19,21 @@ def get_question():
     return random.choice(list(questions_main.items()))
 
 
+def greetings(question, star_answer):
+    print("Вопрос:", question)
+    print(*star_answer)
+
+
+def run_game(question, answer):
+    star_answer = []
+    for i in range(len(answer)):
+        star_answer.append("*")
+
+    greetings(question, star_answer)
+
+
+
+
 if __name__ == '__main__':
     question = get_question()
+    run_game(question[0], question[1])
