@@ -112,7 +112,13 @@ class Game:
             else:
                 self.roll(player)
 
+    def result(self):
+        if self.break_main is not None:  # если никто не ошибся, называя слово целиком
+            print(f"Победил Игрок-{self.break_main}")
+            print("Набранное количество очков", self.scores[self.break_main])
+
     def run(self):
         self.get_question()
         self.greetings()
         self.run_game()
+        self.result()

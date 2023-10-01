@@ -109,6 +109,20 @@ class MainTest(unittest.TestCase):
                              'Назовите букву\n'
                              '* * * *\n', output)
 
+    def test_result(self):
+        with io.StringIO() as buf, redirect_stdout(buf):
+            game = Game()
+            game.question = "test"
+            game.answer = "test"
+            game.star_answer = ["*", "*", "*", "*"]
+            game.break_main = 1
+            game.scores[1] = 500
+            with io.StringIO() as buf, redirect_stdout(buf):
+                game.result()
+                output = buf.getvalue()
+            self.assertEqual('Победил Игрок-1\n'
+                             'Набранное количество очков 500\n', output)
+
 
 if __name__ == '__main__':
     unittest.main()
