@@ -59,6 +59,19 @@ class Game:
         print("Вопрос:", self.question)
         print(*self.star_answer)
 
+    def call_word(self, player):
+        print("Назовите слово целиком")
+        answer = input().lower()
+        if answer == self.answer:
+            print("Поздравляю, вы ответили правильно!")
+            print("Ответ", self.answer)
+            return True
+        else:
+            print("К сожалению, вы ошиблись. Вы проиграли")
+            self.scores[player] = 0
+            self.players_iterator.clear_player(player)
+            return False
+
     def run_game(self):
 
         for player in self.players_iterator:
