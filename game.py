@@ -72,6 +72,34 @@ class Game:
             self.players_iterator.clear_player(player)
             return False
 
+    def roll(self, player):
+        print("Вращайте барабан")
+        play_score = random.choice(self.wheel)
+        if play_score == "next":
+            print("Ход переходит к другому игроку")
+        elif play_score == "Б":
+            print("У вас банкрот. Очки сгорают, а ход переходит к другому игроку")
+            self.scores[player] = 0
+        else:
+            print("Вы заработали", play_score, "очков")
+            self.scores[player] += play_score
+
+            print("Назовите букву")
+
+            letter = input()
+            nxt_plr = False
+
+            for i in range(len(self.star_answer)):
+                if letter == self.answer[i]:
+                    nxt_plr = True
+                    self.star_answer[i] = letter
+
+            if nxt_plr:
+                print("Вы отгадали. Откройте пожалуйста такие буквы в слове")
+                print(*self.star_answer)
+            else:
+                print(*self.star_answer)
+
     def run_game(self):
 
         for player in self.players_iterator:
